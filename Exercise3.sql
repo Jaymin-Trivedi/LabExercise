@@ -30,42 +30,34 @@ GO
 -- Write a script to create a table to store the TVAdvertisement data.
 ---------------------------------------------------------------------
 
-CREATE TABLE DirectMarketing.TVAdvertisement
-(
-	TV_Station nvarchar(15) NOT NULL,
-	City nvarchar(25) NULL,
-	CostPerAdvertisement float NULL,
-	TotalCostOfAllAdvertisements float NULL,
-	NumberOfAdvertisements varchar(4) NULL,
-	Date_Of_Advertisement_1 varchar(12) NULL,
-	Time_Of_Advertisement_1	int NULL,
-	Date_Of_Advertisement_2	varchar(12) NULL,
-	Time_Of_Advertisement_2	int NULL,
-	Date_Of_Advertisement_3	varchar(12) NULL,
-	Time_Of_Advertisement_3	int NULL,
-	Date_Of_Advertisement_4	varchar(12) NULL,
-	Time_Of_Advertisement_4	int NULL,
-	Date_Of_Advertisement_5	varchar(12) NULL,
-	Time_Of_Advertisement_5	int NULL
-);
-GO
 
+Create table DirectMarketing.TVAdvertisements(
+    AdvertisementId int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    AdvertisementName VARCHAR(50) NOT NULL,
+    AdvertisementBrand VARCHAR(50) NOT NULL,
+    ChannelName VARCHAR(50) NOT NULL,
+    Cost MONEY NOT NULL,
+    AdvertisementTime VARCHAR(50) NOT NULL,
+	Date DateTimeOffset(7) NOT NULL,
+    );
 
 ---------------------------------------------------------------------
 -- Task 3
 -- 
 -- Write a script to create a table to store the CampaignResponse data.
---
--- Change the column nullability to be appropriate for the data.
 ---------------------------------------------------------------------
 
-CREATE TABLE DirectMarketing.CampaignResponse
-(
-	ResponseOccurredWhen datetime NOT NULL, 
-	RelevantProspect int NOT NULL,
-	RespondedHow varchar(8) NOT NULL,
-	ChargeFromReferrer float NULL,
-	RevenueFromResponse	float NULL,
-	ResponseProfit AS (RevenueFromResponse - ChargeFromReferrer) PERSISTED
-);
-GO
+Create table DirectMarketing.CampaignResponses(
+    CampaignId int NOT NULL PRIMARY KEY IDENTITY(1,1),
+    CampaignName VARCHAR(50) NOT NULL,
+	CampaignResponse VARCHAR(10) NOT NULL,
+    CityOfCampaign VARCHAR(50) NOT NULL,
+    StartDate DATETIMEOFFSET(7) NOT NULL,
+    EndDate DATETIMEOFFSET(7) NOT NULL,
+    NumberOfResponse int NOT NULL,
+    CampaignLead VARCHAR(30) NOT NULL,
+    InterestedTenant VARCHAR(50) NOT NULL,
+    ConfirmTenant VARCHAR(50) NOT NULL,
+    Invested MONEY NOT NULL,
+    Profit MONEY NOT NULL,
+    );
